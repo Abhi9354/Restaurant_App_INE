@@ -10,9 +10,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const emailRef = useRef("");
-  const [isCustomer, setIsCustomer] = useState(true);
-  const [isStaff, setIsStaff] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
+
   const passwordRef = useRef("");
 
   const [emailError, setEmailError] = useState("");
@@ -47,9 +45,7 @@ const Login = () => {
       console.log("enter 1");
       dispatch(authentication({ email, password }));
       if (data.loading) {
-        
-          navigate({pathname:ROUTE.HOME});
-       
+        navigate({ pathname: ROUTE.HOME });
       }
     }
   };

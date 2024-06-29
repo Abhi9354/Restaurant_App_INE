@@ -19,7 +19,7 @@ export const authentication = createAsyncThunk(
 
       localStorage.setItem("token", token);
 
-      return { token, role, name,email };
+      return { token, role, name, email };
     } catch (error) {
       alert("error");
       console.log("error during authentication", error);
@@ -36,8 +36,8 @@ export const authSlice = createSlice({
     role: "",
     restaurantData: [],
     cartData: [],
-    email:"",
-    orderData:[]
+    email: "",
+    orderData: [],
   },
   reducers: {
     setToken: (state, action) => {
@@ -48,22 +48,27 @@ export const authSlice = createSlice({
     },
     setData: (state, action) => {
       console.log("action", action);
-      state.restaurantData=action.payload
+      state.restaurantData = action.payload;
     },
 
     cartData: (state, action) => {
       console.log("action cart", action);
       const data = action.payload;
       const updatedCart = data.map((item) => {
-          return {
-            id:item._id,name:item.name,price:item.price,dsc:item.dsc,img:item.img,quantity:1
-          }
+        return {
+          id: item._id,
+          name: item.name,
+          price: item.price,
+          dsc: item.dsc,
+          img: item.img,
+          quantity: 1,
+        };
       });
-      state.cartData=updatedCart
+      state.cartData = updatedCart;
     },
     addOrderData: (state, action) => {
       console.log("action cart", action);
-      state.orderData=action.payload
+      state.orderData = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -87,6 +92,7 @@ export const authSlice = createSlice({
   },
 });
 
-export const { setToken, removeToken ,setData,cartData,addOrderData} = authSlice.actions;
+export const { setToken, removeToken, setData, cartData, addOrderData } =
+  authSlice.actions;
 
 export default authSlice.reducer;
