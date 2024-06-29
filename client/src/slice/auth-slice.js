@@ -52,7 +52,13 @@ export const authSlice = createSlice({
 
     cartData: (state, action) => {
       console.log("action cart", action);
-      state.cartData=action.payload;
+      const data = action.payload;
+      const updatedCart = data.map((item) => {
+          return {
+            id:item._id,name:item.name,price:item.price,dsc:item.dsc,img:item.img,quantity:1
+          }
+      });
+      state.cartData=updatedCart
     },
   },
   extraReducers: (builder) => {
