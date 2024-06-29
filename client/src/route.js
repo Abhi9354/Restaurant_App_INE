@@ -1,6 +1,8 @@
+
 export const ROUTE={
     LOGIN:"/",
     REGISTER:"/register",
     HOME:"/home",
-    CART:"/cart"
+    CART:"/cart",
+    STAFFDASHBOARD:"/home"
 }

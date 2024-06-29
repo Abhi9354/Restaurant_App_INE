@@ -36,7 +36,8 @@ export const authSlice = createSlice({
     role: "",
     restaurantData: [],
     cartData: [],
-    email:""
+    email:"",
+    orderData:[]
   },
   reducers: {
     setToken: (state, action) => {
@@ -60,6 +61,10 @@ export const authSlice = createSlice({
       });
       state.cartData=updatedCart
     },
+    addOrderData: (state, action) => {
+      console.log("action cart", action);
+      state.orderData=action.payload
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -82,6 +87,6 @@ export const authSlice = createSlice({
   },
 });
 
-export const { setToken, removeToken ,setData,cartData} = authSlice.actions;
+export const { setToken, removeToken ,setData,cartData,addOrderData} = authSlice.actions;
 
 export default authSlice.reducer;

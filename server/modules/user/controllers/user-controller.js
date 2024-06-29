@@ -1,6 +1,7 @@
 import { AppConstants } from "../../../shared/utils/constants/config.js";
 import { loadMessageBundler } from "../../../shared/utils/constants/i18n/messageReader.js";
 import { generateToken, verifyToken } from "../../../shared/utils/token.js";
+import { orderModel } from "../db/models/order-schema.js";
 import { restaurantModel } from "../db/models/restaurant-schema.js";
 import { userService } from "../services/user-service.js";
 export const register = async (req, res) => {
@@ -94,6 +95,26 @@ export const addOrder=async(req,res)=>{
   }
     
   } catch (error) {
+    throw error
+  }
+}
+
+export const getOrders=async(req,res)=>{
+  try {
+    const auth = req.headers["authorization"];
+    console.log("auth", auth);
+    if (verifyToken(auth)) {
+      console.log("enter addcontroller");
+      const doc = await orderModel.find()
+            console.log('doc',doc);
+      res.status(200).json({ message: "success", data: doc });
+    }
+    else {
+      console.log('token not valid ');
+      res.status(401).send("token not valid");
+    }
+  } catch (error) {
+    console.log("error",error)
     throw error
   }
 }

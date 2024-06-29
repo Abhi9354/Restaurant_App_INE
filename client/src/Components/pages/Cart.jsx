@@ -3,8 +3,12 @@ import { useSelector } from 'react-redux'
 import CartList from '../../elements/CartList';
 import { API } from '../../utils/constants';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { ROUTE } from '../../route';
 
 const Cart = () => {
+  const navigate = useNavigate()
+
   const selector = useSelector(state => state.authSlice)
   const [cart,setCart] = useState(selector.cartData);
  
@@ -12,6 +16,9 @@ const Cart = () => {
   const makeApiCall = async() => {
     const response=axios.post(API.addOrder,{CustomerName:selector.name,CustomerEmail:selector.email,cart})
     console.log('response',response);
+    alert("Order Placed");
+    navigate(ROUTE.HOME);
+    
   };
   
   console.log('selector',selector.cartData);
