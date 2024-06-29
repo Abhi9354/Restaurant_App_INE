@@ -81,3 +81,19 @@ export const addRestaurants = async (req, res, next) => {
     throw err;
   }
 };
+
+export const addOrder=async(req,res)=>{
+  try {
+  const data = req.body
+  const doc = await userService.addOrder(data);
+  if(doc ){
+    res.status(AppConstants.SUCCESS_CODES).send({message:"success",data:doc})
+  }
+  else{
+    res.status(AppConstants.ERROR_CODES.INTERNAL_SERVER_ERROR).send({message:"fail to add order on Controller"})
+  }
+    
+  } catch (error) {
+    throw error
+  }
+}

@@ -1,4 +1,5 @@
 import { hashPassword, verifyPassword } from "../../../shared/utils/password-hash.js";
+import { orderModel } from "../db/models/order-schema.js";
 import { restaurantModel } from "../db/models/restaurant-schema.js";
 import { userModel } from "../db/models/user-schema.js";
 
@@ -47,5 +48,19 @@ throw err        }
             throw error
         }
        
+    },
+
+    async addOrder(data){
+         try {
+            const doc = await orderModel.create(data)
+            if(doc){
+                return doc
+            }else{
+                return null
+            }
+         } catch (error) {
+            console.log('error',error);
+            throw error
+         }
     }
 };
