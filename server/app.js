@@ -10,6 +10,7 @@ const app = express();
 app.use(cors(
   {
     origin:[ "https://restaurant-app-ine.vercel.app/"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
   }
 ));
