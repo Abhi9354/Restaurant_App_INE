@@ -29,7 +29,7 @@ const promise = dbConnectionLoad();
 promise
   .then((result) => {
     console.log("db connection build");
-    const server = app.listen(1234, (err) => {
+    const server = app.listen(process.env.PORT,process.env.HOST, (err) => {
       if (err) {
         chalk.red(err);
       } else {
