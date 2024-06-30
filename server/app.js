@@ -9,7 +9,7 @@ dotenv.config();
 const app = express();
 app.use(cors(
   {
-    origin: "https://restaurant-app-ine.vercel.app/",
+    origin:[ "https://restaurant-app-ine.vercel.app/"],
     credentials: true
   }
 ));
