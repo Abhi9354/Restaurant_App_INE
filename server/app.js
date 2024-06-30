@@ -15,8 +15,10 @@ app.use(cors(
   }
 ));
 app.use(express.json());
-
-app.use("/", userRouter); 
+app.get("/", (req, res) => {
+  res.send("server is up and running");
+})
+// app.use("/", userRouter); 
 //middleware it just a function
 
 app.use("*", (req, res) => { 
