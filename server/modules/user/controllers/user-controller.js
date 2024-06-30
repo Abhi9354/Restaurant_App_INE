@@ -3,6 +3,7 @@ import { loadMessageBundler } from "../../../shared/utils/constants/i18n/message
 import { generateToken, verifyToken } from "../../../shared/utils/token.js";
 import { orderModel } from "../db/models/order-schema.js";
 import { restaurantModel } from "../db/models/restaurant-schema.js";
+import { userModel } from "../db/models/user-schema.js";
 import { userService } from "../services/user-service.js";
 export const register = async (req, res) => {
   const data = req.body;
@@ -46,10 +47,23 @@ export const login = async (req, res) => {
     // res.status(AppConstants.ERROR_CODES.INTERNAL_SERVER_ERROR).json({"message":"Internal server error"})
   }
 };
-export const profile = (req, res) => {
+export const profile = async(req, res) => {
   const auth = req.headers["authorization"];
+  const decoded = verifyToken(auth);
+  console.log('decoded',decoded);
+  res.locals.jwtData = decoded;
+  console.log('res.locals',res.locals.jwtData.email);
   if (verifyToken(auth)) {
-    res.send("profile");
+
+    const user= await userModel.find({"email":res.locals.jwtData.email});
+    console.log('user',user);
+    if(!user){
+      return res.status(401).send("Permissions didn't match");
+      
+    }
+    res
+      .status(200)
+      .json({ message: "OK", name: user[0].name, email: user[0].email ,role:user[0].role});
   } else {
     res
       .status(AppConstants.ERROR_CODES.AUTH_FAILED)

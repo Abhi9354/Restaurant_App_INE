@@ -13,7 +13,7 @@ export const userRouter = express.Router();
 
 userRouter.post("/auth/login", login);
 userRouter.post("/auth/register", register);
-userRouter.get("/profile", profile);
+userRouter.get("/verifyauth", profile);
 userRouter.post("/auth/logout", remove);
 userRouter.get("/getRestaurants", getRestaurants);
 userRouter.post("/addorder", addOrder);

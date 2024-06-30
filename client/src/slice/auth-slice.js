@@ -18,6 +18,7 @@ export const authentication = createAsyncThunk(
       const name = response.data.data.name;
 
       localStorage.setItem("token", token);
+      // localStorage.setItem("role", role);
 
       return { token, role, name, email };
     } catch (error) {
@@ -26,6 +27,31 @@ export const authentication = createAsyncThunk(
     }
   }
 );
+export const verifyauth = createAsyncThunk("/verifyauth", async () => {
+  try{
+  const token = localStorage.getItem("token");
+  const response = await axios.get(API.verifyAuth, {
+    headers: {
+      authorization: token,
+      "Content-Type": "application/json",
+    },
+  })
+  console.log("verify auth ",response)
+if(response.status === 200){
+  const role = response.data.role;
+      const name = response.data.name;
+      const email = response.data.email;
+      return {  role, name ,email};
+}
+  else{
+    console.log("not data found")
+  }
+
+    }
+    catch(error){
+      console.log("error during authentication", error);
+    }
+});
 
 export const authSlice = createSlice({
   name: "auth",
@@ -42,10 +68,13 @@ export const authSlice = createSlice({
   reducers: {
     setToken: (state, action) => {
       state.token = action.payload;
+      
     },
     removeToken: (state, action) => {
       state.token = "";
     },
+   
+    
     setData: (state, action) => {
       console.log("action", action);
       state.restaurantData = action.payload;
@@ -89,7 +118,25 @@ export const authSlice = createSlice({
       .addCase(authentication.rejected, (state, action) => {
         console.log("rejected state", state, "action is ", action);
       });
+
+
+      builder
+      .addCase(verifyauth.pending, (state, action) => {
+        console.log("pending state", state, "action is ", action);
+      })
+      .addCase(verifyauth.fulfilled, (state, action) => {
+        console.log("fulfilled state", state, "action is ", action);
+        state.role = action.payload.role;
+        state.name = action.payload.name;
+        state.email = action.payload.email;
+        state.loading = true;
+      })
+      .addCase(verifyauth.rejected, (state, action) => {
+        console.log("rejected state", state, "action is ", action);
+      });
   },
+
+
 });
 
 export const { setToken, removeToken, setData, cartData, addOrderData } =

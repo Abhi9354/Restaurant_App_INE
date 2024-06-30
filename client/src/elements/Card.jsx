@@ -7,9 +7,9 @@ const Card = ({ restaurant, idx, onClick }) => {
     <>
       {idx !== 2 && idx !== 4 ? (
         <div>
-          <div className="max-w-sm  bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+          <div className="h-full w-96 mr-2  bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <div>
-              <img className="rounded-t-lg " src={restaurant.img} alt="" />
+              <img className="rounded-t-lg h-60 w-96" src={restaurant.img} alt="" />
             </div>
             <div className="p-5">
               <div>
@@ -17,8 +17,8 @@ const Card = ({ restaurant, idx, onClick }) => {
                   {restaurant.name}
                 </h5>
               </div>
-              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                {restaurant.dsc}
+              <p className="mb-3 font-normal  text-gray-700 dark:text-gray-400">
+                {restaurant.dsc.slice(0,20)}
               </p>
               <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
                 {restaurant.country}
