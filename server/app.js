@@ -10,7 +10,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("/", userRouter); //middleware it just a function
+app.use("/", userRouter); 
+//middleware it just a function
+
+app.use("*", (req, res) => { 
+  res.status(404).send("heloo page not found");
+} )
 const promise = dbConnectionLoad();
 
 promise
