@@ -1,9 +1,9 @@
 
 export const API = {
-  login: import.meta.env.VITE_BACKEND_URL + "/auth/login",
-  register: import.meta.env.VITE_BACKEND_URL + "/auth/register",
-  getRestaurants: import.meta.env.VITE_BACKEND_URL + "/getRestaurants",
-  addOrder: import.meta.env.VITE_BACKEND_URL + "/addorder",
-  getOrders: import.meta.env.VITE_BACKEND_URL + "/getorders",
-  verifyAuth: import.meta.env.VITE_BACKEND_URL + "/verifyauth",
+  login: "https://restaurant-app-api.vercel.app/" + "/auth/login",
+  register: "https://restaurant-app-api.vercel.app/" + "/auth/register",
+  getRestaurants: "https://restaurant-app-api.vercel.app/" + "/getRestaurants",
+  addOrder: "https://restaurant-app-api.vercel.app/" + "/addorder",
+  getOrders: "https://restaurant-app-api.vercel.app/" + "/getorders",
+  verifyAuth: "https://restaurant-app-api.vercel.app/" + "/verifyauth",
 };

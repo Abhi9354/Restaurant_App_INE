@@ -8,7 +8,8 @@ export const generateToken = (email) => {
 };
 export const verifyToken = (token) => {
   try {
-    return jwt.verify(token, process.env.SECRET_KEY);
+
+    return jwt.verify(token, "THISISSCERET");
     
   } catch (err) {
     console.log(err);
