@@ -9,7 +9,7 @@ dotenv.config();
 const app = express();
 app.use(cors(
   {
-    origin:[ "https://restaurant-app-ine.vercel.app/"],
+    origin:[ "https://restaurant-app-ine.vercel.app","http://localhost:5173","http://localhost:5174"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
   }
