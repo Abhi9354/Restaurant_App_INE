@@ -9,7 +9,7 @@ dotenv.config();
 const app = express();
 app.use(cors(
   {
-    origin:[ "https://restaurant-app-ine.vercel.app/"],
+    origin:[ "https://restaurant-app-ine.vercel.app/", "http://localhost:5173"],
     credentials: true
   }
 ));
@@ -26,7 +26,7 @@ const promise = dbConnectionLoad();
 promise
   .then((result) => {
     console.log("db connection build");
-    const server = app.listen(process.env.PORT || 1234, (err) => {
+    const server = app.listen(1234, (err) => {
       if (err) {
         chalk.red(err);
       } else {
