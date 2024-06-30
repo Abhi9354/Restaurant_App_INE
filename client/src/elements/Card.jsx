@@ -6,25 +6,21 @@ const Card = ({ restaurant, idx, onClick }) => {
   return (
     <>
       {idx !== 2 && idx !== 4 ? (
-        <div>
-          <div className="h-full w-96 mr-2  bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <div>
-              <img className="rounded-t-lg h-60 w-96" src={restaurant.img} alt="" />
-            </div>
+        <div className="p-4 w-full md:w-1/2 lg:w-1/3 xl:w-1/4">
+          <div className="h-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <img className="rounded-t-lg w-full h-60 object-cover" src={restaurant.img} alt={restaurant.name} />
             <div className="p-5">
-              <div>
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  {restaurant.name}
-                </h5>
-              </div>
-              <p className="mb-3 font-normal  text-gray-700 dark:text-gray-400">
-                {restaurant.dsc.slice(0,20)}
+              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                {restaurant.name}
+              </h5>
+              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                {restaurant.dsc.slice(0, 20)}
               </p>
               <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
                 {restaurant.country}
               </p>
               <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                Rs.{restaurant.price}
+                Rs. {restaurant.price}
               </p>
               <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
                 Rating {restaurant.rate}
@@ -45,7 +41,7 @@ const Card = ({ restaurant, idx, onClick }) => {
           </div>
         </div>
       ) : (
-        <div></div>
+        <div className="hidden"></div>
       )}
     </>
   );

@@ -59,9 +59,9 @@ useEffect(() => {
   }, [restaurants]);
 
   return (
-    <div className="bg-slate-400  flex flex-col justify-space-between h-full  ">
+    <div className="bg-slate-400  flex flex-col justify-space-between h-full w-full ">
       <Navbar />
-      <div className="flex flex-wrap pl-16 gap-2 mt-2">
+      <div className="flex flex-wrap  mt-2">
         {enable && (
           restaurants.map((restaurant,idx) => {
             return <Card key={restaurant._id} idx={idx} restaurant={restaurant} onClick={addToCart}/>;
