@@ -5,12 +5,14 @@ import { API } from "../utils/constants";
 export const authentication = createAsyncThunk(
   "/login",
   async ({ email, password }) => {
+    axios.defaults.withCredentials = true;
     console.log("enter 2", email, password);
     try {
       const response = await axios.post(API.login, {
         email: email,
         password: password,
-      });
+      }
+    );
 
       console.log("response", response.data.data.role);
       const token = response.data.token;
