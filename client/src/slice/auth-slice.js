@@ -28,29 +28,26 @@ export const authentication = createAsyncThunk(
   }
 );
 export const verifyauth = createAsyncThunk("/verifyauth", async () => {
-  try{
-  const token = localStorage.getItem("token");
-  const response = await axios.get(API.verifyAuth, {
-    headers: {
-      authorization: token,
-      "Content-Type": "application/json",
-    },
-  })
-  console.log("verify auth ",response)
-if(response.status === 200){
-  const role = response.data.role;
+  try {
+    const token = localStorage.getItem("token");
+    const response = await axios.get(API.verifyAuth, {
+      headers: {
+        authorization: token,
+        "Content-Type": "application/json",
+      },
+    });
+    console.log("verify auth ", response);
+    if (response.status === 200) {
+      const role = response.data.role;
       const name = response.data.name;
       const email = response.data.email;
-      return {  role, name ,email};
-}
-  else{
-    console.log("not data found")
+      return { role, name, email };
+    } else {
+      console.log("not data found");
+    }
+  } catch (error) {
+    console.log("error during authentication", error);
   }
-
-    }
-    catch(error){
-      console.log("error during authentication", error);
-    }
 });
 
 export const authSlice = createSlice({
@@ -68,13 +65,11 @@ export const authSlice = createSlice({
   reducers: {
     setToken: (state, action) => {
       state.token = action.payload;
-      
     },
     removeToken: (state, action) => {
       state.token = "";
     },
-   
-    
+
     setData: (state, action) => {
       console.log("action", action);
       state.restaurantData = action.payload;
@@ -119,8 +114,7 @@ export const authSlice = createSlice({
         console.log("rejected state", state, "action is ", action);
       });
 
-
-      builder
+    builder
       .addCase(verifyauth.pending, (state, action) => {
         console.log("pending state", state, "action is ", action);
       })
@@ -135,8 +129,6 @@ export const authSlice = createSlice({
         console.log("rejected state", state, "action is ", action);
       });
   },
-
-
 });
 
 export const { setToken, removeToken, setData, cartData, addOrderData } =
