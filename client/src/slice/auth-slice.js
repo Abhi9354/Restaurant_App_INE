@@ -24,7 +24,7 @@ export const authentication = createAsyncThunk(
 
       return { token, role, name, email };
     } catch (error) {
-      alert("error");
+      alert("please Wait for a minute, server may take time to start up");
       console.log("error during authentication", error);
     }
   }
